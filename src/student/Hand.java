@@ -8,7 +8,6 @@ public class Hand {
      * The Deck object passed to constructor is saved here.
      */
     private Deck deck;
-
     /**
      * a hand is an array of Cards.
      */
@@ -19,13 +18,41 @@ public class Hand {
     private int size;
 
     /**
+     * get deck object.
+     * @return deck object
+     */
+    public Deck getDeck() {
+        return this.deck;
+    }
+
+
+
+    /**
+     * get hand object.
+     *
+     * @return hand object
+     */
+    public Card[] getHand() {
+        return this.hand;
+    }
+
+
+    /**
+     * Get size of the hand.
+     * @return an integer representing the hand's size
+     */
+    public int getSize() {
+        return this.size;
+    }
+
+    /**
+     * Conastructor for Hand object.
      * @param deck a deck object
-     * @param size the size
-     * @Constructor Instantiates a new Hand.
+     * @param size the size to initialize hand object to
      */
     public Hand(Deck deck, int size) {
 
-        hand = new Card[size];
+        this.hand = new Card[size];
         this.size = size;
         this.deck = deck;
         // shuffle the deck to ensure it's randomized.
@@ -37,35 +64,7 @@ public class Hand {
     }
 
     /**
-     * Gets size of the hand.
-     *
-     * @return an integer representing the hand's size
-     */
-    public int getSize() {
-        return this.size;
-    }
-
-    /**
-     * the deck object stored in private field.
-     *
-     * @return deck object
-     */
-    public Deck getDeck() {
-        return this.deck;
-    }
-
-    /**
-     * A getter method to get the hand.
-     *
-     * @return the hand- an array of Cards.
-     */
-    public Card[] getHand() {
-        return hand;
-    }
-
-    /**
-     * Get card at index i.
-     *
+     * Get card at index i of hand.
      * @param i the
      * @return the card
      */
@@ -79,7 +78,6 @@ public class Hand {
 
     /**
      * Checks if the given card is in the hand- if it is: remove it (replace it) with a drawn card from the deck.
-     *
      * @param card card to find in your hand
      * @return boolean
      */

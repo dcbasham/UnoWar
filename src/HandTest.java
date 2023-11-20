@@ -48,25 +48,5 @@ public class HandTest {
     }
 }
 
-// expected output:
-/*
-7
-45
-4
-41
-2
-39
-card 0 = <Random Card>
-card 1 = <Random Card>
-Invalid hand index!
-Invalid hand index!
-true
-true
-false
-true
-true
-true
-false
-false
-<Random Card>
- */
+
+

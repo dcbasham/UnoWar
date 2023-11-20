@@ -6,11 +6,12 @@ package student;
 
 public class BiggestCardAI extends AI {
     /**
-     * picks first valid card found in hand (left to right), if no valid card to play on cardPile return null.
-     * @see student.AI
+     * picks first valid card found in hand (left to right), if no valid card to play on cardPile
+     * return null.
      * @param hand
      * @param cardPile
      * @return card to play or null if invalid
+     * @see student.AI
      */
     @Override
     public Card getPlay(Hand hand, CardPile cardPile) {
@@ -33,9 +34,9 @@ public class BiggestCardAI extends AI {
 
         return nullCard;
     }
+
     /**
-     * Prints the name of the AI
-     *
+     * Prints the name of the AI.
      * @return the string
      */
     @Override

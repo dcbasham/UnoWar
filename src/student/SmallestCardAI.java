@@ -15,12 +15,12 @@ public class SmallestCardAI extends AI {
     private Card[] validCards = new Card[5];
 
     /**
-     * AI play round
-     *
-     * @param hand     the hand
-     * @param cardPile the card pile
-     * @return the play
+     * Play one round.
+     * @param hand     hand for AI.
+     * @param cardPile card pile to play card on.
+     * @return card if valid card, null if not valid.
      */
+
     @Override
     public Card getPlay(Hand hand, CardPile cardPile) {
         this.deck = hand.getDeck();
@@ -48,12 +48,12 @@ public class SmallestCardAI extends AI {
     }
 
     /**
-     * To string string.
-     *
+     * override default toString method to return className.
      * @return the string
      */
     @Override
     public String toString() {
         return "Smallest Card AI";
+
     }
 }

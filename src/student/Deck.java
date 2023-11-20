@@ -17,7 +17,7 @@ public class Deck {
     private int cardsRemaining;
 
     /**
-     * @Constructor Instantiates a new Deck with 52 card objects.
+     *
      */
     public Deck() {
         deck = new Card[52];
@@ -40,7 +40,7 @@ public class Deck {
      */
     public void shuffle() {
         Random ran = new Random(1000);
-// exchanges randomly chosen pairs of array elements
+        // exchanges randomly chosen pairs of array elements
         for (int i = deck.length - 1; i > 0; i--) {
             // let j be a random integer between 0 and i inclusive
             int j = ran.nextInt(i + 1);
@@ -52,11 +52,10 @@ public class Deck {
 
     /**
      * Draws the next card from the deck.
-     *
      * @return the drawn card
      */
     public Card draw() {
-        if (cardsRemaining <= 0) {
+        if (cardsRemaining == 0) {
             shuffle();
             cardsRemaining = 52;
         }
@@ -68,7 +67,6 @@ public class Deck {
 
     /**
      * Cards remaining in the deck.
-     *
      * @return the int
      */
     public int cardsRemaining() {
@@ -77,7 +75,6 @@ public class Deck {
 
     /**
      * Checks if the deck has no more cards left.
-     *
      * @return the boolean
      */
     public boolean isEmpty() {

@@ -1,45 +1,32 @@
 package student;
 
-/**
- * UnoWarMatch is a game structured into 10 rounds, each round
- * two players take turns until one of them loses by playing
- * an invalid card.
- */
+
 class UnoWarMatch {
-    /** player 1 */
+    /** represents the first player and the one we measure for winRate. */
     private AI ai1;
-    /** player 2 */
+    /** represents "other player". */
     private AI ai2;
 
     /**
-     * Constructor where 2 AI players are created.
-     * @param ai1 is player 1
-     * @param ai2 is player 2
+     * Constructor for UnoWarMatch creates two instances of an AI to represent the players.
+     * @param ai1
+     * @param ai2
      */
+
     public UnoWarMatch(AI ai1, AI ai2) {
         this.ai1 = ai1;
         this.ai2 = ai2;
     }
 
     /**
-     * ROUND:
-     *  * cardPile is created new each round (dealt card from deck)
-     *  * @param hand1
-     *  * player plays card onto pile
-     *  * ...continue and take turns until someone loses.
-     *
-     *  * player1 starts round1 (or winner prev round)
-     *  *  check card is valid
-     *  * play card
-     *   * remove() from hand && draw replacementfrom deck.
-     *  */
-
-    /**
-     * @param deck     the deck created at beginning of the game.
-     * @param starting boolean that tells us which hand will start- representing the players.
-     * @param hand1
-     * @param hand2
-     * @return boolean return true if ai1 wins, otherwise false means ai2 wins.
+     * represents one round of the game.
+     * @param deck     created in game
+     * @param hand1    created in game
+     * @param hand2    created in game, second player hand
+     * @param starting determines who starts the round
+     * @return boolean who won the round.
+     * "true" ai1 wins this round
+     * "false" means ai2 wins this round.
      */
 
     public boolean playRound(Deck deck, Hand hand1, Hand hand2, boolean starting) {
@@ -49,11 +36,11 @@ class UnoWarMatch {
         CardPile pile = new CardPile(topCard);
         Card choice;
         while (true) {
-            if (starting){
+            if (starting) {
 //                System.out.println("player1 starting");
                 //player 1 starts
-                choice = ai1.getPlay(hand1,pile);
-                if (choice == null){
+                choice = ai1.getPlay(hand1, pile);
+                if (choice == null) {
                     //player 2 gets point
                     return false;
                 }
@@ -62,8 +49,8 @@ class UnoWarMatch {
                 hand1.remove(choice);
                 starting = false;
             } else {
-                choice = ai2.getPlay(hand2,pile);
-                if (choice == null){
+                choice = ai2.getPlay(hand2, pile);
+                if (choice == null) {
                     //player 2 loses, player 1 wins
                     return true;
                 }
@@ -79,19 +66,16 @@ class UnoWarMatch {
     }
 
     /**
-     * The game of UnoWar is played with a deck of 52 cards,
-     * GAME = 10 rounds
-     * when game is first called // rounds = 0;
-     * new Deck()
-     * new Hand -> 5 cards always.
-     * ((only called once))
-     * hands persist through 10 rounds.
-     * Deck is shuffled when empty.
+     * One game is 10 rounds. The winner of each round gets 1 point,
+     * there is a new deck created each game.
+     * hands subsist through each round, only created new once.
+     * @return boolean when a player reaches 10
+     * points, return true for ai1 winning the game, false for ai2.
      */
     public boolean playGame() {
-        /** deck created each game*/
+
         Deck deck = new Deck();
-        /** hands subsist through each round, only created new once*/
+
         Hand hand1 = new Hand(deck, 5);
         Hand hand2 = new Hand(deck, 5);
 
@@ -117,62 +101,19 @@ class UnoWarMatch {
         return player1Points > player2Points ? true : false;
     }
 
-/**
- * Play n trials of the game and find win rate of player 1 (ai1).
- * @param nTrials number of games to play (each 10 rounds).
- * @return double for win rate of ai1
- */
-public double winRate(int nTrials) {
-    int winsP1 = 0;
+    public double winRate(int nTrials) {
+        double thisWinRate;
+        double winsP1 = 0;
 
-    for (int i = 0; i < nTrials; i++) {
-        if (playGame()) {
-            winsP1++;
+        for (int i = 0; i < nTrials; i++) {
+            if (playGame()) {
+                winsP1++;
+            }
         }
+        double v = ((double) winsP1) / nTrials;
+
+        return v;
     }
-
-    return ((double)(winsP1)) / ((double)(nTrials));
 }
 
-
-}
-/* may be logic error, player 1 and 'starting' boolean or the double casting on bottom.
-// win rates all 0.0 0r 1.0
-*/
-
-
-
-/*
- *
- * VALID CARD:
- * 1. equal suit
- * playerCard.suit == topCard.suit
- * AND/OR
- * 2. greater than or equal to rank number. (1 - 13)
- * playerCard.rankNum >= topCard.rankNum
- *
- * no valid card? current = loser;
- * otherPlayer = WINNER
- * otherPlayer +1 pt.
- * otherPlayer designated to start next round
- *
- *
- *
- * Keep going until current player can't play any card and they lose.
- *
- *
- *
- *
- * Strategy:
- * Save good cards (high rank) for later
- * - to stay in the game
- * - winner is only assigned because other player loses
- * - based on how long you are able to keep playing valid cards=
- * higher rank cards are better and can be played in more scenarios where
- * you may not have the same suit.
- *
- * GAME OVER:
- * When one player has 10 points (10 total rounds)
- *
-*/
 
