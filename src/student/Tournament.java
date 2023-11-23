@@ -1,67 +1,63 @@
 package student;
+
 // Daurie Basham
 
-/**
- * reports winRates for games between AIs.
- */
+/** reports winRates for games between AIs. */
 public class Tournament {
 
-    /**
-     * match up different combinations of AIs.
-     * @param args
-     */
-    public static void main(String[] args) {
-        AI rand = new AI();
-        AI rand2 = new AI();
-        AI sm = new SmallestCardAI();
-        AI sm2 = new SmallestCardAI();
-        AI b = new BiggestCardAI();
-        AI b2 = new BiggestCardAI();
+  /**
+   * * Start with Random AI vs. random, small, big AIs, repeat the pattern for each AI. (small vs.
+   * random, small, big etc.
+   */
+  public static void main(String[] args) {
+    AI rand = new AI();
+    AI sm = new SmallestCardAI();
+    AI big = new BiggestCardAI();
 
+    UnoWarMatch RR = new UnoWarMatch(rand, rand);
+    System.out.println(
+        rand.toString() + " vs. " + rand.toString() + " winRate  " + RR.winRate(1000));
 
-        UnoWarMatch r1r2 = new UnoWarMatch(rand, rand2);
-        System.out.println(rand.toString() + " vs. " + rand2.toString() + " winrate " + r1r2.winRate(1000));
+    UnoWarMatch Rsm = new UnoWarMatch(rand, sm);
+    System.out.println(rand.toString() + " vs. " + sm.toString() + " winRate " + Rsm.winRate(1000));
 
-        UnoWarMatch rr = new UnoWarMatch(rand, rand);
-        System.out.println(rand.toString() + " r1 vs. " + rand.toString() + " r1 "
-                + "winrate " + rr.winRate(1000));
+    UnoWarMatch Rbig = new UnoWarMatch(rand, big);
+    System.out.println(
+        rand.toString() + " vs. " + big.toString() + " winRate" + Rbig.winRate(1000));
 
+    /** smallest AI vs. random, small, big */
+    UnoWarMatch smR = new UnoWarMatch(sm, rand);
+    System.out.println(sm.toString() + " vs. " + rand.toString() + " winRate " + smR.winRate(1000));
 
-        UnoWarMatch r1sm1 = new UnoWarMatch(rand, sm);
-        System.out.println(rand.toString() + " r1 vs. " + sm.toString() + " sm1 winrate " + r1sm1.winRate(1000));
+    UnoWarMatch SS = new UnoWarMatch(sm, sm);
+    System.out.println(sm.toString() + " vs. " + sm.toString() + " winRate " + SS.winRate(1000));
 
-        UnoWarMatch r1sm2 = new UnoWarMatch(rand, sm2);
-        System.out.println(rand.toString() + " r1 vs. " + sm2.toString() + " sm2 winrate " + r1sm2.winRate(1000));
+    UnoWarMatch Sbig = new UnoWarMatch(sm, big);
+    System.out.println(sm.toString() + " vs. " + big.toString() + " winrate " + Sbig.winRate(1000));
 
-        UnoWarMatch r2sm2 = new UnoWarMatch(rand2, sm2);
-        System.out.println(rand2.toString() + "r2 vs. " + sm2.toString() + " sm2 winrate " + r1sm2.winRate(1000));
+    /** big vs. other AIs */
+    UnoWarMatch BigR = new UnoWarMatch(big, rand);
+    System.out.println(
+        big.toString() + " vs. " + rand.toString() + " winRate " + BigR.winRate(1000));
 
-        UnoWarMatch r1b1 = new UnoWarMatch(rand, b);
-        System.out.println(rand.toString() + " r1 vs. " + b.toString() + " b1 winrate " + r1b1.winRate(1000));
+    UnoWarMatch BigS = new UnoWarMatch(big, sm);
+    System.out.println(big.toString() + " vs. " + sm.toString() + " winRate " + BigS.winRate(1000));
 
-        UnoWarMatch b1r1 = new UnoWarMatch(b, rand);
-        System.out.println(b.toString() + " b1 vs. " + rand.toString() + " r1 winrate " + b1r1.winRate(1000));
-
-        UnoWarMatch sm1r1 = new UnoWarMatch(sm, rand);
-        System.out.println(sm.toString() + " sm1 vs. " + rand.toString() + " r1 winrate " + sm1r1.winRate(1000));
-
-        UnoWarMatch sm1sm2 = new UnoWarMatch(sm, sm2);
-        System.out.println(sm.toString() + " sm1 vs. " + sm2.toString() + " sm2 winrate " + sm1sm2.winRate(1000));
-
-        UnoWarMatch sm1b1 = new UnoWarMatch(sm, b);
-        System.out.println(sm.toString() + " sm1 vs. " + b.toString() + " b1 winrate " + sm1b1.winRate(1000));
-
-        UnoWarMatch b1sm1 = new UnoWarMatch(b, sm);
-        System.out.println(b.toString() + " b1 vs. " + sm.toString() + " sm1 winrate " + b1sm1.winRate(1000));
-
-        UnoWarMatch b2sm = new UnoWarMatch(b2, sm);
-        System.out.println(b2.toString() + " b2 vs. " + sm.toString() + " sm1 winrate " + b2sm.winRate(1000));
-
-        UnoWarMatch b1b2 = new UnoWarMatch(b, b2);
-        System.out.println(b.toString() + " b1 vs. " + b2.toString() + " b2 winrate " + b1b2.winRate(1000));
-    }
+    UnoWarMatch BB = new UnoWarMatch(big, big);
+    System.out.println(big.toString() + " vs. " + big.toString() + " winRate " + BB.winRate(1000));
+  }
 }
+/*
+Expected Output:
+Random Card AI vs. Random Card AI winRate: 0.499
+Random Card AI vs. Smallest Card AI winRate: 0.002
+Random Card AI vs. Biggest Card AI winRate: 0.842
 
+Smallest Card AI vs. Random Card AI winRate: 0.998
+Smallest Card AI vs. Smallest Card AI winRate: 0.499
+Smallest Card AI vs. Biggest Card AI winRate: 0.999
 
-
-
+Biggest Card AI vs. Random Card AI winRate: 0.156
+Biggest Card AI vs. Smallest Card AI winRate: 0.0
+Biggest Card AI vs. Biggest Card AI winRate: 0.491
+ */
