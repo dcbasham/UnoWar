@@ -22,7 +22,7 @@ public class Card {
   private int suit;
 
   /**
-   * Instantiates a new Card.
+   * Creates a new card.
    *
    * @param rank a number from 1-13 representing all the values of cards in a deck
    * @param suit a number from 1-4 representing the suits of a card
@@ -66,8 +66,10 @@ public class Card {
   }
 
   /**
-   * @param obj instance Object we check to see if its parent class is
-   * @return boolean @Override method equals().
+   * Override equals method.
+   *
+   * @param obj instance Object we check to see if is a Card object
+   * @return boolean
    */
   @Override
   public boolean equals(Object obj) {
@@ -79,6 +81,8 @@ public class Card {
   }
 
   /**
+   * Override toString method.
+   *
    * @return "{rankName} of {suitName}" @Override String.toString().
    * @default "Ace of Spades"
    * @see public Card();

@@ -3,7 +3,6 @@ package student;
 /** AI "Random Card AI" is the parent class to all other AIs. */
 public class AI {
   /** hand instance. */
-  //  private Hand hand;
 
   /**
    * Get hand of AI. picks first valid card found in hand (left to right), if no valid card to play
